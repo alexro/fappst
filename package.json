@@ -1,20 +1,16 @@
 {
+  "private": true,
   "name": "fappst",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexro/fappst.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexro/fappst/issues"
-  },
-  "homepage": "https://github.com/alexro/fappst#readme"
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "lerna": "^3.20.2"
+  }
 }
