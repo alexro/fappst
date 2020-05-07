@@ -1,5 +1,5 @@
 {
-  "name": "@*/server",
+  "name": "@*/appserver",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,6 +7,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@*/client": "^1.0.0"
+    "@*/app": "^1.0.0"
   }
 }
