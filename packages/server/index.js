@@ -1,1 +1,3 @@
-console.log('server')
+const c = require('@*/client');
+
+console.log('server');

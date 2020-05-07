@@ -1,9 +1,12 @@
 {
-  "name": "server",
+  "name": "@*/server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node index.js"
+  },
+  "dependencies": {
+    "@*/client": "^1.0.0"
   }
 }
