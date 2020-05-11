@@ -1,17 +1,34 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider, ReactReduxContext } from "react-redux";
+import { render } from "react-dom";
+import { Route, Switch } from "react-router"; // react-router v4/v5
+import { ConnectedRouter } from "connected-react-router";
+import { createBrowserHistory } from "history";
+import configureStore from "./modules/store";
+import App from "./App";
 
-function App() {
-  return (
-    <div>
-      <b>Hello world super super cool!</b>
-    </div>
-  );
-}
+const history = createBrowserHistory();
 
-export default App;
+const store = configureStore(history /* provide initial state if any */);
 
-const rootElement = document.getElementById('root');
-render(<App></App>, rootElement);
+const rootElement = document.getElementById("root");
+render(
+  <React.StrictMode>
+    <Provider store={store} context={ReactReduxContext}>
+      <ConnectedRouter history={history} context={ReactReduxContext}>
+        <>
+          <Switch>
+            <Route exact path="/">
+              <App />
+            </Route>
+            <Route render={() => <div>Miss</div>} />
+          </Switch>
+        </>
+      </ConnectedRouter>
+    </Provider>
+  </React.StrictMode>,
+  rootElement
+);
 
-console.log('ho ho', API_KEY);
+console.log("ho ho", API_KEY);

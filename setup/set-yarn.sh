@@ -5,6 +5,7 @@ yarn add -W --dev \
 @babel/preset-env \
 @babel/preset-react \
 @babel/plugin-proposal-class-properties \
+@babel/plugin-transform-runtime \
 @babel/runtime \
 babel-eslint \
 babel-loader \
@@ -20,9 +21,14 @@ eslint-plugin-jsx-a11y \
 eslint-plugin-react \
 lerna \
 prettier \
+@reduxjs/toolkit \
 react \
 react-dom \
 react-hot-loader \
+react-redux \
+react-router \
+react-router-dom \
+connected-react-router \
 webpack \
 webpack-dev-middleware \
 webpack-dev-server \
