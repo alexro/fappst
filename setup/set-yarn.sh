@@ -28,6 +28,7 @@ react-hot-loader \
 react-redux \
 react-router \
 react-router-dom \
+redux-thunk \
 connected-react-router \
 webpack \
 webpack-dev-middleware \

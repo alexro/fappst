@@ -7,6 +7,8 @@ import {
   selectItems,
   selectSelectedId,
   initialize,
+  selectTest,
+  fetchUserById,
 } from "./conditionsListSlice";
 
 export function ConditionsList() {
@@ -14,10 +16,13 @@ export function ConditionsList() {
   const initialized = useSelector(selectInitialized);
   const items = useSelector(selectItems);
   const selectedId = useSelector(selectSelectedId);
+  const test = useSelector(selectTest);
 
   if (!initialized) {
-    dispatch(initialize());
+    dispatch(fetchUserById());
   }
+
+  return <h1>{test}</h1>;
 
   if (!items) {
     return <div>No</div>;

@@ -74,11 +74,13 @@ const config = {
     port: 7700, // port to run dev-server
     compress: true,
     progress: true,
+    hot: true,
     watchContentBase: true,
   },
 };
 
 if (isProd) {
+  console.log('aga - is prod!')
   config.plugins.push(
     new UglifyJSPlugin()
     // new CopyWebpackPlugin([

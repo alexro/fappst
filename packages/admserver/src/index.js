@@ -6,6 +6,7 @@ const middleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const APP_PATH = process.env.APP_PATH;
 console.log(APP_PATH);
+console.log(process.env.NODE_ENV);
 const webpackConfig = require(path.join(APP_PATH, 'webpack.config.js'));
 const compiler = webpack(webpackConfig);
 
@@ -13,7 +14,6 @@ const express = require('express');
 // const cookieParser = require('cookie-parser');
 // const cors = require('cors');
 // const session = require('express-session');
-
 
 // const config = require('./config');
 // const corsOptions = require('./cors-options');
@@ -114,10 +114,12 @@ app.use(express.urlencoded({ extended: true }));
 // );
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('hira');
   app.get('*', requireAuth, (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'app', 'build', 'index.html'));
   });
 } else {
+  console.log('ili hira');
   app.use(
     middleware(compiler, {
       reload: true,

@@ -1,11 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const fetchUserById = createAsyncThunk(
+  "users/fetchByIdStatus",
+  (userId, thunkAPI) => {
+    return new Promise((r) => {
+      setTimeout(() => {
+        r("12");
+      }, 1000);
+    });
+  }
+);
 
 export const conditionsListSlice = createSlice({
-  name: 'conditionsList',
+  name: "conditionsList",
   initialState: {
     initialized: false,
     items: null,
     selectedId: 0,
+    test: 0,
   },
   reducers: {
     // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -14,15 +26,22 @@ export const conditionsListSlice = createSlice({
     // immutable state based off those changes
     initialize: (state, action) => {
       state.initialized = true;
-       if (action.payload) {
+      if (action.payload) {
         state.items = action.payload.map((item, index) => {
           item.id = index;
-           return item;
+          return item;
         });
       }
     },
     selectId: (state, action) => {
       state.selectedId = action.payload;
+    },
+  },
+  extraReducers: {
+    // Add reducers for additional action types here, and handle loading state as needed
+    [fetchUserById.fulfilled]: (state, action) => {
+      // Add user to the state array
+      state.test = action.payload;
     },
   },
 });
@@ -56,5 +75,6 @@ export const loadData = () => async (dispatch) => {
 export const selectInitialized = (state) => state.conditionsList.initialized;
 export const selectItems = (state) => state.conditionsList.items;
 export const selectSelectedId = (state) => state.conditionsList.selectedId;
+export const selectTest = (state) => state.conditionsList.test;
 
 export default conditionsListSlice.reducer;
