@@ -20,6 +20,7 @@ eslint-plugin-import \
 eslint-plugin-jsx-a11y \
 eslint-plugin-react \
 lerna \
+nodemon \
 prettier \
 @reduxjs/toolkit \
 react \
@@ -46,6 +47,8 @@ uglifyjs-webpack-plugin
 
 
 yarn add -W \
+cookie-parser \
+cors \
 express \
 express-http-proxy \
 express-session

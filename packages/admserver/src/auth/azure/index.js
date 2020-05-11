@@ -1,16 +1,15 @@
-const path = require('path');
-const http = require('http');
-const express = require('express');
 
 // const config = require('./config');
+// const proxyReqHandler = require('./proxy-req-handler');
 // const passport = require('passport');
 // const oidcStrategy = require('./oidcStrategy');
+// const requireAuth = require('./requireAuth');
 
-const app = express();
 
 // passport.use(oidcStrategy);
 // passport.serializeUser((user, done) => done(null, user));
 // passport.deserializeUser((user, done) => done(null, user));
+
 
 //https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 // app.use(passport.initialize());
@@ -48,20 +47,17 @@ const app = express();
 //   res.redirect(config.destroySessionUrl);
 // });
 
+// app.get('/config', requireAuth, (req, res) => {
+//   res.send(config.frontend);
+// });
 
-require('./auth')(app);
-require('./common')(app);
-require('./ping')(app);
-require('./webpackLoader')(app, process.env.APP_PATH);
+// app.get('/config-full', requireAuth, (req, res) => {
+//   res.send(config);
+// });
 
-const server = http.createServer(app);
+// app.all(
+//   '/api-proxy/*',
+//   requireAuth,
+//   proxyReqHandler(config.host, config.apiKey)
+// );
 
-/* eslint-disable no-console */
-server.listen(5001, (err) => {
-  if (err) {
-    console.log('Failed to start server');
-    console.log(err);
-  }
-  console.log(`Server has started on port: ${server.address().port}`);
-});
-/* eslint-enable */

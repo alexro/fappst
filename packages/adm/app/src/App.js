@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <div>{location.pathname}</div>
+      <hr />
       <ConditionsList />
     </div>
   );

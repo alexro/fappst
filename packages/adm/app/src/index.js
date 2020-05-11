@@ -24,4 +24,9 @@ render(
   rootElement
 );
 
+if (module.hot) {
+  console.log("ho ho hot");
+  console.log("hot hot hot");
+  console.log("hot hot hot");
+}
 console.log("ho ho", API_KEY);
