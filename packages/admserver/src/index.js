@@ -1,14 +1,19 @@
-// const webpack = require('webpack');
-// const middleware = require('webpack-dev-middleware');
-// const webpackHotMiddleware = require('webpack-hot-middleware');
-const express = require('express');
-// const cookieParser = require('cookie-parser');
 const path = require('path');
 const http = require('http');
+
+const webpack = require('webpack');
+const middleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const APP_PATH = process.env.APP_PATH;
+console.log(APP_PATH);
+const webpackConfig = require(path.join(APP_PATH, 'webpack.config.js'));
+const compiler = webpack(webpackConfig);
+
+const express = require('express');
+// const cookieParser = require('cookie-parser');
 // const cors = require('cors');
 // const session = require('express-session');
 
-// const webpackConfig = require('../webpack.config.js');
 
 // const config = require('./config');
 // const corsOptions = require('./cors-options');
@@ -17,8 +22,6 @@ const http = require('http');
 // const version = require('./version');
 // const oidcStrategy = require('./oidcStrategy');
 // const requireAuth = require('./requireAuth');
-
-// const compiler = webpack(webpackConfig);
 
 const app = express();
 
@@ -110,33 +113,36 @@ app.use(express.urlencoded({ extended: true }));
 //   express.static(path.join(__dirname, '..', 'app', 'build'))
 // );
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.get('*', requireAuth, (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '..', 'app', 'build', 'index.html'));
-//   });
-// } else {
-//   app.use(
-//     middleware(compiler, {
-//       reload: true,
-//       publicPath: webpackConfig.output.publicPath,
-//     })
-//   );
-//   app.use(webpackHotMiddleware(compiler));
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', requireAuth, (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'app', 'build', 'index.html'));
+  });
+} else {
+  app.use(
+    middleware(compiler, {
+      reload: true,
+      publicPath: webpackConfig.output.publicPath,
+    })
+  );
+  app.use(webpackHotMiddleware(compiler));
 
-//   // This is how we get Express to serve the generated index.html for
-//   // requests that fall through to this handler.
-//   app.get('*', requireAuth, (req, res, next) => {
-//     const filename = path.resolve(compiler.outputPath, 'index.html');
-//     compiler.outputFileSystem.readFile(filename, (err, result) => {
-//       if (err) {
-//         return next(err);
-//       }
-//       res.set('content-type', 'text/html');
-//       res.send(result);
-//       res.end();
-//     });
-//   });
-// }
+  // This is how we get Express to serve the generated index.html for
+  // requests that fall through to this handler.
+  app.get(
+    '*',
+    /*requireAuth,*/ (req, res, next) => {
+      const filename = path.resolve(compiler.outputPath, 'index.html');
+      compiler.outputFileSystem.readFile(filename, (err, result) => {
+        if (err) {
+          return next(err);
+        }
+        res.set('content-type', 'text/html');
+        res.send(result);
+        res.end();
+      });
+    }
+  );
+}
 
 /* eslint-disable no-console */
 server.listen(5001, (err) => {

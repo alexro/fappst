@@ -20,11 +20,22 @@ eslint-plugin-jsx-a11y \
 eslint-plugin-react \
 lerna \
 prettier \
+react \
+react-dom \
+react-hot-loader \
 webpack \
 webpack-dev-middleware \
+webpack-dev-server \
 webpack-hot-middleware \
-webpack-cli
-
+webpack-cli \
+css-loader \
+copy-webpack-plugin \
+html-webpack-plugin \
+node-sass \
+raw-loader \
+sass-loader \
+style-loader \
+uglifyjs-webpack-plugin
 
 
 yarn add -W \
