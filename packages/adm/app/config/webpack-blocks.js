@@ -1,4 +1,4 @@
-"use strict";
+/* eslint-env node */
 
 const { resolve } = require("path");
 const root = resolve(__dirname, "..");

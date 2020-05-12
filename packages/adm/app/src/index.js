@@ -1,18 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { AppContainer } from "react-hot-loader"; /* react-hot-loader v3 */
-import { Provider, ReactReduxContext } from "react-redux";
-import { Route, Switch } from "react-router";
-import { ConnectedRouter } from "connected-react-router";
-import { createBrowserHistory } from "history";
-import configureStore from "./modules/store";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader'; /* react-hot-loader v3 */
+import { Provider, ReactReduxContext } from 'react-redux';
+import { Route } from 'react-router';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
+import configureStore from './modules/store';
+import App from './App';
 
 const history = createBrowserHistory();
 const store = configureStore(history);
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 
-const render = () =>
+function render() {
   ReactDOM.render(
     <AppContainer>
       <React.StrictMode>
@@ -27,13 +27,14 @@ const render = () =>
     </AppContainer>,
     rootElement
   );
+}
 
 render();
 
-console.log("ho ho", API_KEY);
+console.log('ho ho', API_KEY);
 
-if (module.hot) {
-  module.hot.accept("./App", () => {
+if (window.module.hot) {
+  window.module.hot.accept('./App', () => {
     /* For Webpack 2.x
        Need to disable babel ES2015 modules transformation in .babelrc
        presets: [

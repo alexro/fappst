@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --inline --config=./app/webpack.config.js",
-    "server": "export APP_PATH=${APP_PATH:=$PWD/app/config/webpack.js} && nodemon"
+    "start": "export APP_PATH=${APP_PATH:=$PWD/app/config/webpack.js} && nodemon"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
