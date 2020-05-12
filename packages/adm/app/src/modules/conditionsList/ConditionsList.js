@@ -22,7 +22,11 @@ export function ConditionsList() {
     dispatch(fetchUserById());
   }
 
-  return <h1>{test}</h1>;
+  return (
+    <p>
+      <b>{test}</b>
+    </p>
+  );
 
   if (!items) {
     return <div>No</div>;

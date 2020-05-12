@@ -5,7 +5,7 @@ export const fetchUserById = createAsyncThunk(
   (userId, thunkAPI) => {
     return new Promise((r) => {
       setTimeout(() => {
-        r("12");
+        r("13");
       }, 1000);
     });
   }

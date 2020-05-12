@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <div>{location.pathname}</div>
       <hr />
+      <hr />
       <ConditionsList />
     </div>
   );
