@@ -4,7 +4,7 @@ const { logPath } = require('../consts')();
 const options = {
   morgan: {
     level: 'info',
-    filename: `${logPath}/logs/morgan.log`,
+    filename: `${logPath}/morgan.log`,
     handleExceptions: true,
     json: true,
     maxsize: 5242880, // 5MB
@@ -13,7 +13,7 @@ const options = {
   },
   file: {
     level: 'info',
-    filename: `${logPath}/logs/app.log`,
+    filename: `${logPath}/app.log`,
     handleExceptions: true,
     json: true,
     maxsize: 5242880, // 5MB
