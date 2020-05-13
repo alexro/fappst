@@ -51,10 +51,10 @@ cookie-parser \
 cors \
 express \
 express-http-proxy \
-express-session
+express-session \
+morgan \
+winston
 
 
 
-cp .eslintrc.js ../packages/adm
-cp .prettierignore ../packages/adm
-cp prettier.config.js ../packages/adm
+

@@ -1,12 +1,20 @@
+require('./utils/consts')({
+  logPath: process.env.LOG_PATH,
+});
+
 const path = require('path');
 const http = require('http');
 const express = require('express');
+
+const morgan = require('morgan');
+const winston = require('./utils/logger');
 
 // const config = require('./config');
 // const passport = require('passport');
 // const oidcStrategy = require('./oidcStrategy');
 
 const app = express();
+app.use(morgan('combined', { stream: winston('morgan').stream }));
 
 // passport.use(oidcStrategy);
 // passport.serializeUser((user, done) => done(null, user));
@@ -48,7 +56,6 @@ const app = express();
 //   res.redirect(config.destroySessionUrl);
 // });
 
-
 require('./auth')(app);
 require('./common')(app);
 require('./ping')(app);
@@ -65,3 +72,5 @@ server.listen(5001, (err) => {
   console.log(`Server has started on port: ${server.address().port}`);
 });
 /* eslint-enable */
+
+module.exports = app;

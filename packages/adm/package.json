@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "export APP_PATH=${APP_PATH:=$PWD/app/config/webpack.js} && nodemon"
+    "start": "export APP_PATH=${APP_PATH:=$PWD/app/config/webpack.js} && export LOG_PATH=${LOG_PATH:=$PWD/logs} && nodemon"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
