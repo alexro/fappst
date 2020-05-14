@@ -17,9 +17,9 @@ function App() {
     <div className="App">
       <div>{location.pathname}</div>
       <hr />
-      <SimpleForm onSubmit={showResults} />
+      {/* <SimpleForm onSubmit={showResults} /> */}
       <hr />
-      {/* <ConditionsList /> */}
+      <ConditionsList />
     </div>
   );
 }

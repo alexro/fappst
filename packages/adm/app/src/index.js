@@ -14,7 +14,7 @@ const rootElement = document.getElementById('root');
 
 function render() {
   ReactDOM.render(
-    <AppContainer>
+    // <AppContainer>
       <React.StrictMode>
         <Provider store={store} context={ReactReduxContext}>
           <ConnectedRouter history={history} context={ReactReduxContext}>
@@ -23,8 +23,8 @@ function render() {
             </Route>
           </ConnectedRouter>
         </Provider>
-      </React.StrictMode>
-    </AppContainer>,
+      </React.StrictMode>,
+    // </AppContainer>,
     rootElement
   );
 }
@@ -32,6 +32,19 @@ function render() {
 render();
 
 console.log('ho ho', API_KEY);
+
+// const warn = console.warn;
+// export function logWarning(...warnings) {
+//   let showWarning = true;
+//   warnings.forEach((warning) => {
+//     if (warning.includes('UNSAFE_')) showWarning = false;
+//     else if (warning.includes('SourceMap')) showWarning = false;
+//     else if (warning.includes('DevTools')) showWarning = false;
+//   });
+//   if (showWarning) warn(...warnings);
+// }
+
+// console.warn = logWarning;
 
 if (window.module.hot) {
   window.module.hot.accept('./App', () => {

@@ -1,20 +1,20 @@
-require('./utils/consts')({
-  logPath: process.env.LOG_PATH,
-});
+// require('./utils/consts')({
+//   logPath: process.env.LOG_PATH,
+// });
 
 const path = require('path');
 const http = require('http');
 const express = require('express');
 
-const morgan = require('morgan');
-const winston = require('./utils/logger');
+// const morgan = require('morgan');
+// const winston = require('./utils/logger');
 
 // const config = require('./config');
 // const passport = require('passport');
 // const oidcStrategy = require('./oidcStrategy');
 
 const app = express();
-app.use(morgan('combined', { stream: winston('morgan').stream }));
+// app.use(morgan('combined', { stream: winston('morgan').stream }));
 
 // passport.use(oidcStrategy);
 // passport.serializeUser((user, done) => done(null, user));
@@ -56,9 +56,9 @@ app.use(morgan('combined', { stream: winston('morgan').stream }));
 //   res.redirect(config.destroySessionUrl);
 // });
 
-require('./auth')(app);
-require('./common')(app);
-require('./ping')(app);
+// require('./auth')(app);
+// require('./common')(app);
+// require('./ping')(app);
 require('./webpackLoader')(app, process.env.APP_PATH);
 
 const server = http.createServer(app);
@@ -73,4 +73,4 @@ server.listen(5001, (err) => {
 });
 /* eslint-enable */
 
-module.exports = app;
+// module.exports = app;

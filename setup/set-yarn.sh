@@ -26,7 +26,7 @@ prettier \
 react \
 react-dom \
 redux-form \
-redux-form-website-template \
+redux-devtools-extension \
 react-hot-loader \
 react-redux \
 react-router \
