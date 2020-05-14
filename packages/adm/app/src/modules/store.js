@@ -1,12 +1,14 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { connectRouter, routerMiddleware } from "connected-react-router";
+import { reducer as reduxFormReducer } from 'redux-form';
 
 import conditionsListReducer from "./conditionsList/conditionsListSlice";
 
 const createRootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
+    form: reduxFormReducer,
     conditionsList: conditionsListReducer,
   });
 

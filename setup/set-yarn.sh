@@ -25,10 +25,13 @@ prettier \
 @reduxjs/toolkit \
 react \
 react-dom \
+redux-form \
+redux-form-website-template \
 react-hot-loader \
 react-redux \
 react-router \
 react-router-dom \
+redux \
 redux-thunk \
 connected-react-router \
 webpack \
