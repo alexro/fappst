@@ -1,18 +1,18 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchUserById = createAsyncThunk(
-  "users/fetchByIdStatus",
-  (userId, thunkAPI) => {
-    return new Promise((r) => {
-      setTimeout(() => {
-        r("13");
-      }, 1000);
-    });
-  }
-);
+export const fetchUserById = createAsyncThunk('users/fetchByIdStatus', (userId, thunkAPI) => {
+  return new Promise((r) => {
+    setTimeout(async () => {
+      const response = await fetch('/api/conditions');
+      const data = await response.json();
+
+      r('13');
+    }, 1000);
+  });
+});
 
 export const conditionsListSlice = createSlice({
-  name: "conditionsList",
+  name: 'conditionsList',
   initialState: {
     initialized: false,
     items: null,

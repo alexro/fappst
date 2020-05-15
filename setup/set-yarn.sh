@@ -10,6 +10,7 @@ yarn add -W --dev \
 babel-eslint \
 babel-loader \
 concurrently  \
+cypress \
 dotenv \
 eslint \
 eslint-config-prettier \
@@ -20,6 +21,7 @@ eslint-plugin-import \
 eslint-plugin-jsx-a11y \
 eslint-plugin-react \
 lerna \
+miragejs \
 nodemon \
 prettier \
 @reduxjs/toolkit \
@@ -32,6 +34,7 @@ react-redux \
 react-router \
 react-router-dom \
 redux \
+redux-saga \
 redux-thunk \
 connected-react-router \
 webpack \

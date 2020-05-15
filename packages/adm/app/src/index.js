@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader'; /* react-hot-loader v3 */
+import { AppContainer } from 'react-hot-loader';
 import { Provider, ReactReduxContext } from 'react-redux';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
-import configureStore from './modules/store';
+import configureStore from './redux/store';
+
+import server from './api';
 import App from './App';
 
 const history = createBrowserHistory();
@@ -14,7 +16,7 @@ const rootElement = document.getElementById('root');
 
 function render() {
   ReactDOM.render(
-    // <AppContainer>
+    <AppContainer>
       <React.StrictMode>
         <Provider store={store} context={ReactReduxContext}>
           <ConnectedRouter history={history} context={ReactReduxContext}>
@@ -23,8 +25,8 @@ function render() {
             </Route>
           </ConnectedRouter>
         </Provider>
-      </React.StrictMode>,
-    // </AppContainer>,
+      </React.StrictMode>
+    </AppContainer>,
     rootElement
   );
 }
@@ -46,8 +48,8 @@ console.log('ho ho', API_KEY);
 
 // console.warn = logWarning;
 
-if (window.module.hot) {
-  window.module.hot.accept('./App', () => {
+if (module.hot) {
+  module.hot.accept('./App', () => {
     /* For Webpack 2.x
        Need to disable babel ES2015 modules transformation in .babelrc
        presets: [
