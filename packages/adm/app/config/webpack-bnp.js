@@ -9,7 +9,7 @@ const babelJS = () => ({
   exclude: [/node_modules/],
 });
 
-const lintJS = () => ({
+const eslintJS = () => ({
   enforce: 'pre',
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
@@ -23,7 +23,17 @@ const html = () => ({
 
 const css = () => ({
   test: /\.css$/,
-  use: ['style-loader', 'css-loader'],
+  use: [
+    'style-loader',
+    { loader: 'css-loader', options: { importLoaders: 1 } },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+        plugins: () => [require('postcss-normalize')(/* pluginOptions */)],
+      },
+    },
+  ],
 });
 
 const scss = () => ({
@@ -33,7 +43,15 @@ const scss = () => ({
       loader: 'style-loader', // creates style nodes from JS strings
     },
     {
-      loader: 'css-loader', // translates CSS into CommonJS
+      loader: 'css-loader',
+      options: { importLoaders: 1 }, // translates CSS into CommonJS
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        ident: 'postcss',
+        plugins: () => [require('postcss-normalize')(/* pluginOptions */)],
+      },
     },
     {
       loader: 'sass-loader', // compiles Sass to CSS
@@ -117,7 +135,7 @@ const definePlugin = (obj) => new webpack.DefinePlugin(obj);
 // };
 
 module.exports = {
-  rules: { babelJS, lintJS, html, css, scss, fontEOT, fontWOFF, fontOTTF, img, imgSVG },
+  rules: { babelJS, eslintJS, html, css, scss, fontEOT, fontWOFF, fontOTTF, img, imgSVG },
   sourceMaps: { sourceMapDev, sourceMapProd },
   plugins: {
     htmlPlugin,

@@ -46,6 +46,8 @@ css-loader \
 copy-webpack-plugin \
 html-webpack-plugin \
 node-sass \
+postcss-loader \
+postcss-normalize \
 raw-loader \
 sass-loader \
 style-loader \

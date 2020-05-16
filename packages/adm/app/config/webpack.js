@@ -4,13 +4,13 @@ const root = resolve(__dirname, '..');
 
 require('dotenv').config({ path: resolve(__dirname, '.env') });
 
-const { babelJS, scss } = require('./webpack-bnp').rules;
+const { babelJS, eslintJS, scss } = require('./webpack-bnp').rules;
 const { sourceMapDev, sourceMapProd } = require('./webpack-bnp').sourceMaps;
 const { definePlugin, htmlPlugin, hotReloadPlugins } = require('./webpack-bnp').plugins;
 
 const config = {
   mode: 'development',
-  // context: root,
+  context: root,
   entry: [
     'webpack-hot-middleware/client',
     // "react-hot-loader/patch",
