@@ -1,11 +1,12 @@
 /* eslint-env node */
-
 const { resolve } = require('path');
 const root = resolve(__dirname, '..');
 
 require('dotenv').config({ path: resolve(__dirname, '.env') });
 
-const { HTML_Raw, SASS, JS_Babel, SourceMap_Dev, Plugin_HTML, Plugins_HotReload, define } = require('./webpack-blocks');
+const { babelJS, scss } = require('./webpack-bnp').rules;
+const { sourceMapDev, sourceMapProd } = require('./webpack-bnp').sourceMaps;
+const { definePlugin, htmlPlugin, hotReloadPlugins } = require('./webpack-bnp').plugins;
 
 const config = {
   mode: 'development',
@@ -20,11 +21,15 @@ const config = {
     filename: 'bundle.js', // Name of generated bundle after build
     publicPath: '/', // public URL of the output directory when referenced in a browser
   },
-  devtool: SourceMap_Dev,
+  devtool: sourceMapDev(),
   module: {
-    rules: [HTML_Raw, SASS, JS_Babel],
+    rules: [babelJS(), scss()],
   },
-  plugins: [define({ API_KEY: process.env.API_KEY }), Plugin_HTML, ...Plugins_HotReload],
+  plugins: [
+    definePlugin({ API_KEY: process.env.API_KEY }),
+    htmlPlugin(resolve(root, 'public/index.html')),
+    ...hotReloadPlugins(),
+  ],
 };
 
 module.exports = config;

@@ -31,7 +31,7 @@ export default function configureStore(history, initialState) {
     )
   );
 
-  sagaMiddleware.run(rootSaga);
+  //sagaMiddleware.run(rootSaga);
 
   return store;
 }
