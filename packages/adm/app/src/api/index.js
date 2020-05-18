@@ -3,6 +3,7 @@ import { Server } from 'miragejs';
 export default new Server({
   routes() {
     this.namespace = 'api';
+    this.logging = false;
 
     this.get('/conditions', () => {
       return {

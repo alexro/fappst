@@ -61,6 +61,7 @@ express \
 express-http-proxy \
 express-session \
 morgan \
+uuid \
 winston
 
 

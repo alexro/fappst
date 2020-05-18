@@ -6,7 +6,12 @@
   "scripts": {
     "start": "export APP_PATH=${APP_PATH:=$PWD/app/config/webpack.js} && export LOG_PATH=${LOG_PATH:=$PWD/logs} && nodemon"
   },
-  "browserslist": "last 2 versions",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
