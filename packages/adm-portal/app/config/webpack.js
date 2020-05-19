@@ -21,7 +21,7 @@ const config = {
     filename: 'bundle.js', // Name of generated bundle after build
     publicPath: '/', // public URL of the output directory when referenced in a browser
   },
-  devtool: 'sourceMapDev()',
+  devtool: sourceMapDev(),
   module: {
     rules: [babelJS(), scss()],
   },
@@ -29,12 +29,16 @@ const config = {
     definePlugin({ API_KEY: process.env.API_KEY }),
     copyPlugin({
       patterns: [
-        { from: 'public', to: 'static' },
+        { from: 'public/assets', to: 'assets' },
+        { from: 'public/images', to: 'images' },
+        { from: 'public/favicon.ico', to: '.' },
+        { from: 'public/index-demo.html', to: '.' },
       ],
     }),
     htmlPlugin({ template: resolve(root, 'public/index.html'), inject: false }),
     ...hotReloadPlugins(),
   ],
+  stats: 'minimal',
 };
 
 module.exports = config;

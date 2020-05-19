@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const middleware = require('webpack-dev-middleware');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 function config(app, configPath) {
@@ -14,9 +14,10 @@ function config(app, configPath) {
   const compiler = webpack(webpackConfig);
 
   app.use(
-    middleware(compiler, {
+    webpackDevMiddleware(compiler, {
       reload: true,
       publicPath: webpackConfig.output.publicPath,
+      stats: webpackConfig.stats,
     })
   );
   app.use(webpackHotMiddleware(compiler));
@@ -24,12 +25,14 @@ function config(app, configPath) {
   app.get(
     '*',
     /*requireAuth,*/ (req, res, next) => {
-      const filename = path.resolve(compiler.outputPath, 'index.html');
+      const filename = path.resolve(compiler.outputPath, `.${req.path}`);
       compiler.outputFileSystem.readFile(filename, (err, result) => {
         if (err) {
+          console.log(err)
           return next(err);
         }
-        res.set('content-type', 'text/html');
+        // res.set('content-type', 'text/html');
+        res.contentType(filename);
         res.send(result);
         res.end();
       });
