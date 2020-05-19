@@ -1,13 +1,12 @@
 {
-  "name": "@*/appserver",
+  "name": "adm-portal",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "export APP_PATH=${APP_PATH:=$PWD/app} && export LOG_PATH=${LOG_PATH:=$PWD/logs} && nodemon"
   },
   "dependencies": {
-    "@*/app": "^1.0.0",
     "@clich/webpack-bnp": "^1.0.0"
   }
 }

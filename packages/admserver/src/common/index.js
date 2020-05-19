@@ -1,4 +1,7 @@
+const consts = require('../utils/consts')();
+
 const path = require('path');
+const resolve = require('path').resolve;
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -52,7 +55,7 @@ function config(app) {
   app.get(
     '*',
     /*requireAuth,*/
-    express.static(path.join(__dirname, '..', 'app', 'build')) //TODO: config
+    express.static(resolve(consts.APP_PATH, 'static')) //TODO: config
   );
 }
 

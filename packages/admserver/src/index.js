@@ -1,8 +1,10 @@
-// require('./utils/consts')({
-//   logPath: process.env.LOG_PATH,
-// });
+const consts = require('./utils/consts')({
+  APP_PATH: process.env.APP_PATH,
+  logPath: process.env.LOG_PATH,
+});
 
 const path = require('path');
+const resolve = require('path').resolve;
 const http = require('http');
 const express = require('express');
 
@@ -57,9 +59,9 @@ const app = express();
 // });
 
 // require('./auth')(app);
-// require('./common')(app);
+require('./common')(app);
 // require('./ping')(app);
-require('./webpackLoader')(app, process.env.APP_PATH);
+require('./webpackLoader')(app, resolve(consts.APP_PATH, 'config/webpack.js'));
 
 const server = http.createServer(app);
 
