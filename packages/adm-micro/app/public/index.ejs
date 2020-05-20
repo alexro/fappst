@@ -1,0 +1,16 @@
+<!--
+<%=APP_HASH%>
+-->
+
+<%
+  var scripts = ''
+  for(var i=0; i < htmlWebpackPlugin.files.js.length; i++) {
+    var script = htmlWebpackPlugin.files.js[i]
+    scripts += `<script defer type="text/javascript" src="${script}?${APP_HASH}"></script>`;
+  }
+
+  var main = require("html-loader!./index.html")
+  main = main.replace('</head>', scripts + '</head>')
+%>
+
+<%=main%>

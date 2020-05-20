@@ -5,6 +5,7 @@ yarn add -W --dev \
 @babel/preset-env \
 @babel/preset-react \
 @babel/plugin-proposal-class-properties \
+@babel/plugin-transform-react-jsx \
 @babel/plugin-transform-runtime \
 @babel/runtime \
 babel-eslint \
@@ -24,6 +25,9 @@ lerna \
 miragejs \
 nodemon \
 prettier \
+preact \
+preact-compat \
+preact-router \
 @reduxjs/toolkit \
 react \
 react-dom \
@@ -44,6 +48,8 @@ webpack-hot-middleware \
 webpack-cli \
 css-loader \
 copy-webpack-plugin \
+ejs-compiled-loader \
+html-loader \
 html-webpack-plugin \
 node-sass \
 postcss-loader \

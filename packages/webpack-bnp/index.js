@@ -1,7 +1,5 @@
 /* eslint-env node */
 const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const babelJS = () => ({
   test: /\.(js|jsx)$/,
@@ -16,9 +14,25 @@ const eslintJS = () => ({
   loader: 'eslint-loader',
 });
 
-const html = () => ({
+const ejs = (options) => ({
+  test: /\.ejs$/,
+  use: {
+    loader: 'ejs-compiled-loader',
+    options: options,
+  },
+});
+
+const json = () => ({
+  test: /\.json$/,
+  use: 'json-loader',
+});
+
+const html = (options) => ({
   test: /\.html/,
-  loader: 'raw-loader',
+  use: {
+    loader: 'html-loader',
+    options: options,
+  },
 });
 
 const css = () => ({
@@ -94,6 +108,11 @@ const imgSVG = () => ({
   ],
 });
 
+const raw = () => ({
+  test: /\.(xml|txt|md)$/,
+  use: 'raw-loader',
+});
+
 const sourceMapDev = () => 'cheap-module-eval-source-map';
 
 const sourceMapProd = () => 'source-map';
@@ -115,16 +134,13 @@ const hotReloadPlugins = () => [
   new webpack.HotModuleReplacementPlugin(),
 ];
 
-const Plugins_Prod = [
-  new UglifyJSPlugin(),
-  // new CopyWebpackPlugin([
-  //   {
-  //     from: __dirname + '/src/public',
-  //   },
-  // ])
-];
+const prodPlugins = () => {
+  const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+  return [new UglifyJSPlugin()];
+};
 
-const definePlugin = (obj) => new webpack.DefinePlugin(obj);
+const define = (options) => new webpack.DefinePlugin(options);
+const provide = (options) => new webpack.ProvidePlugin(options);
 
 // const DevServer = {
 //   contentBase: resolve(root, 'public'),
@@ -136,12 +152,13 @@ const definePlugin = (obj) => new webpack.DefinePlugin(obj);
 // };
 
 module.exports = {
-  rules: { babelJS, eslintJS, html, css, scss, fontEOT, fontWOFF, fontOTTF, img, imgSVG },
+  rules: { babelJS, eslintJS, ejs, json, html, css, scss, fontEOT, fontWOFF, fontOTTF, img, imgSVG, raw },
   sourceMaps: { sourceMapDev, sourceMapProd },
   plugins: {
     copyPlugin,
-    definePlugin,
     htmlPlugin,
     hotReloadPlugins,
+    define,
+    provide,
   },
 };

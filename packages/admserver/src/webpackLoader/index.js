@@ -25,13 +25,14 @@ function config(app, configPath) {
   app.get(
     '*',
     /*requireAuth,*/ (req, res, next) => {
-      const filename = path.resolve(compiler.outputPath, `.${req.path}`);
+      const isHtml = req.path.indexOf('.') < 0 || req.path.indexOf('index.html') > 0;
+      const filename = path.resolve(compiler.outputPath, isHtml ? 'index.html' : `.${req.path}`);
       compiler.outputFileSystem.readFile(filename, (err, result) => {
+        console.log(filename);
         if (err) {
-          console.log(err)
+          console.log(err);
           return next(err);
         }
-        // res.set('content-type', 'text/html');
         res.contentType(filename);
         res.send(result);
         res.end();
