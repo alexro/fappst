@@ -6,26 +6,28 @@ import Router from 'preact-router';
 import { h, render } from 'preact';
 import { createPortal } from 'preact/compat';
 
+const Input = () => {
+  function input(e) {
+    console.log(e.target.value);
+  }
+
+  return <input onInput={input} />;
+};
+
 const Home = () => {
-  const container = document.getElementById('modals');
+  const container = document.getElementById('box1').parentElement;
+  container.innerHTML = '';
+
   return (
     <div>
       Home <a href="/about">about</a>
-      {createPortal(<h1>ogo</h1>, container)}
+      {createPortal(<Input/>, container)}
     </div>
   );
-}
+};
 
-const About = () => (
-  <div>
-    About <a href="/search/bbb">search</a>
-  </div>
-);
-const Search = () => (
-  <div>
-    Search <a href="/">home</a>
-  </div>
-);
+const About = () => <div>About</div>;
+const Search = () => <div>Search</div>;
 
 const Main = () => (
   <Router>

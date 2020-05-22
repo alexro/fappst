@@ -1,0 +1,12 @@
+{
+  "name": "adm",
+  "version": "1.0.0",
+  "main": "app/src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "./shell/run.sh"
+  },
+  "dependencies": {
+    "@clich/webpack-bnp": "^1.0.0"
+  }
+}
