@@ -12,6 +12,9 @@ import ReactDOM from 'react-dom';
 
 // const history = createBrowserHistory();
 // const store = configureStore(history);
+
+import '../public/assets/css/main.scss'
+
 const rootElement = document.getElementById('root');
 
 function render() {
@@ -27,7 +30,14 @@ function render() {
     //     </Provider>
     //   </React.StrictMode>
     // </AppContainer>,
-    <h1>ho ho</h1>,
+    <div className="relative overflow-hidden mb-8">
+      <div className="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4">
+        <div className="max-w-sm mx-auto"></div>
+      </div>
+      <div className="rounded-b-lg p-4 bg-gray-800">
+        <h1>ho ho</h1>
+      </div>
+    </div>,
     rootElement
   );
 }

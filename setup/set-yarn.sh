@@ -37,12 +37,12 @@ redux-form \
 redux-devtools-extension \
 react-hot-loader \
 react-redux \
+connected-react-router \
 react-router \
 react-router-dom \
 redux \
 redux-saga \
 redux-thunk \
-connected-react-router \
 webpack \
 webpack-dev-middleware \
 webpack-dev-server \
@@ -54,12 +54,21 @@ ejs-compiled-loader \
 html-loader \
 html-webpack-plugin \
 node-sass \
-postcss-loader \
-postcss-normalize \
 raw-loader \
 sass-loader \
 style-loader \
-uglifyjs-webpack-plugin
+uglifyjs-webpack-plugin \
+autoprefixer \
+cssnano \
+clean-css \
+postcss \
+postcss-custom-properties \
+postcss-import \
+postcss-loader \
+postcss-nesting \
+postcss-normalize \
+tailwindcss \
+@tailwindcss/custom-forms
 
 
 yarn add -W \

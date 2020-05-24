@@ -7,7 +7,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@*/app": "^1.0.0",
     "@clich/webpack-bnp": "^1.0.0"
   }
 }

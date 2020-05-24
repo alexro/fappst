@@ -48,7 +48,15 @@ const parse_postcss = {
   loader: 'postcss-loader',
   options: {
     ident: 'postcss',
-    plugins: [require('postcss-normalize')(/* pluginOptions */)],
+    plugins: [
+      //require('postcss-normalize')(/* pluginOptions */)
+      require('postcss-import'),
+      require('tailwindcss')(`${process.env.APP_PATH}/tailwind.config.js`),
+      require('postcss-nesting'),
+      require('postcss-custom-properties'),
+      require('autoprefixer'),
+      ...(process.env.NODE_ENV === 'production' ? [require('cssnano')] : []),
+    ],
   },
 };
 
