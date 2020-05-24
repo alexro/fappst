@@ -1,32 +1,36 @@
 /* eslint-env node */
 const { resolve } = require('path');
-const root = resolve(__dirname, '..');
-
-require('dotenv').config({ path: resolve(__dirname, '.env') });
-
-const { babelJS, eslintJS, ejs, scss } = require('@clich/webpack-bnp').rules;
-const { sourceMapDev, sourceMapProd } = require('@clich/webpack-bnp').sourceMaps;
+const { root, mode, prod_mode } = require('@clich/webpack-bnp').env(__dirname);
+const { js, scss } = require('@clich/webpack-bnp').rules;
+const { sourcemap_dev, sourcemap_prod } = require('@clich/webpack-bnp').sourceMaps;
 const { copyPlugin, htmlPlugin, hotReloadPlugins, define, provide } = require('@clich/webpack-bnp').plugins;
 
 const config = {
-  mode: 'development',
+  mode,
   context: root,
-  entry: {
-    index_js: [
-      'webpack-hot-middleware/client',
-      // "react-hot-loader/patch",
-      resolve(root, 'src/index.js'),
-    ],
-    // index_html: [resolve(root, 'public/index.ejs')],
+  entry: () => {
+    if (prod_mode) {
+      return {
+        index: ['./src/index.js'],
+      };
+    } else {
+      return {
+        index: [
+          'webpack-hot-middleware/client',
+          // "react-hot-loader/patch",
+          './src/index.js',
+        ],
+      };
+    }
   },
   output: {
     path: resolve(root, 'build'), // Folder to store generated bundle
-    filename: 'bundle.js', // Name of generated bundle after build
+    filename: '[name].bundle.js', // Name of generated bundle after build
     publicPath: '/', // public URL of the output directory when referenced in a browser
   },
-  devtool: sourceMapDev(),
+  devtool: prod_mode ? sourcemap_prod : sourcemap_dev,
   module: {
-    rules: [babelJS(), scss()],
+    rules: [js, scss],
   },
   plugins: [
     define({ APP_HASH: JSON.stringify(process.env.APP_HASH) }),
@@ -57,7 +61,7 @@ const config = {
         };
       },
     }),
-    ...hotReloadPlugins(),
+    ...(prod_mode ? [] : hotReloadPlugins()),
   ],
   stats: 'minimal',
   resolve: {

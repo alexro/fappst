@@ -61,7 +61,7 @@ const app = express();
 // require('./auth')(app);
 require('./common')(app);
 // require('./ping')(app);
-require('./webpackLoader')(app, resolve(consts.APP_PATH, 'config/webpack.js'));
+require('./webpackLoader')(app, resolve(consts.APP_PATH, 'webpack.config.js'));
 
 const server = http.createServer(app);
 

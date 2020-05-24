@@ -1,11 +1,5 @@
-const { resolve } = require('path');
-require('@babel/register')({
-  root: resolve(__dirname, '../config'),
-  ignore: [/node_modules/],
-});
+/* eslint-env node */
 
-const log = () => {
-  console.log('lolo');
-};
 
-log();
+
+require('./main');
