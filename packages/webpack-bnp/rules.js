@@ -49,7 +49,6 @@ const parse_postcss = {
   options: {
     ident: 'postcss',
     plugins: [
-      //require('postcss-normalize')(/* pluginOptions */)
       require('postcss-import'),
       require('tailwindcss')(`${process.env.APP_PATH}/tailwind.config.js`),
       require('postcss-nesting'),

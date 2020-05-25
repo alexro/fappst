@@ -33,7 +33,10 @@ const config = {
     rules: [js, scss],
   },
   plugins: [
-    define({ APP_HASH: JSON.stringify(process.env.APP_HASH) }),
+    define({
+      APP_ENV: JSON.stringify(mode),
+      APP_HASH: JSON.stringify(process.env.APP_HASH),
+    }),
     provide({
       GLOBAL: resolve(root, 'config/GLOBAL.js'),
     }),
