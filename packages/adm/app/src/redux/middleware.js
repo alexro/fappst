@@ -1,37 +1,24 @@
-// import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-// import { reducer as reduxFormReducer } from 'redux-form';
-// import thunkMiddleware from 'redux-thunk';
-// import { connectRouter, routerMiddleware } from 'connected-react-router';
-// import logger from '../middleware/logger';
-// import conditionsListReducer from '../modules/conditionsList/conditionsListSlice';
+import { applyMiddleware, compose } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-// import rootSaga from './sagas';
+import thunkMiddleware from 'redux-thunk';
+import { routerMiddleware } from 'connected-react-router';
 
-const sagaMiddleware = createSagaMiddleware();
-
-const createRootReducer = (history) =>
-  combineReducers({
-    router: connectRouter(history),
-    form: reduxFormReducer,
-    conditionsList: conditionsListReducer,
-  });
+import rootSaga from './saga';
 
 const composeEnhancers = composeWithDevTools({
   // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 });
 
-export default function configureStore(history, initialState) {
-  const store = createStore(
-    createRootReducer(history),
-    initialState,
-    composeEnhancers(
-      applyMiddleware(routerMiddleware(history), thunkMiddleware, logger, sagaMiddleware)
-      // other store enhancers if any
-    )
+const sagaMiddleware = createSagaMiddleware();
+
+export default function composeMiddleware(history) {
+  return composeEnhancers(
+    applyMiddleware(routerMiddleware(history), thunkMiddleware, sagaMiddleware)
+    // other store enhancers if any
   );
+}
 
-  //sagaMiddleware.run(rootSaga);
-
-  return store;
+export function run() {
+  sagaMiddleware.run(rootSaga);
 }
