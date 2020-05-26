@@ -1,6 +1,6 @@
 /* eslint-env node */
 const { resolve } = require('path');
-const { root, mode, prod_mode } = require('@clich/webpack-bnp').env(__dirname);
+const { root, mode, prod_mode } = require('@clich/webpack-bnp').env(process.env.APP_PATH);
 const { js, scss } = require('@clich/webpack-bnp').rules;
 const { sourcemap_dev, sourcemap_prod } = require('@clich/webpack-bnp').sourceMaps;
 const { copyPlugin, htmlPlugin, hotReloadPlugins, define, provide } = require('@clich/webpack-bnp').plugins;
@@ -12,6 +12,7 @@ const config = {
     if (prod_mode) {
       return {
         index: ['./src/index.js'],
+        login: ['./src/login.js'],
       };
     } else {
       return {
@@ -20,6 +21,7 @@ const config = {
           // "react-hot-loader/patch",
           './src/index.js',
         ],
+        login: ['./src/login.js'],
       };
     }
   },
@@ -50,6 +52,23 @@ const config = {
     htmlPlugin({
       template: resolve(root, 'public/index.ejs'),
       filename: 'index.html',
+      inject: false,
+      templateParameters(compilation, assets, options) {
+        return {
+          compilation: compilation,
+          webpack: compilation.getStats().toJson(),
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            files: assets,
+            options: options,
+          },
+          APP_HASH: process.env.APP_HASH,
+        };
+      },
+    }),
+    htmlPlugin({
+      template: resolve(root, 'public/login.ejs'),
+      filename: 'login.html',
       inject: false,
       templateParameters(compilation, assets, options) {
         return {

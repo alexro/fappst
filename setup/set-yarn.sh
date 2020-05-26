@@ -7,7 +7,6 @@ yarn add -W --dev \
 @babel/plugin-proposal-class-properties \
 @babel/plugin-transform-react-jsx \
 @babel/plugin-transform-runtime \
-@babel/register \
 @babel/runtime \
 babel-eslint \
 babel-loader \
@@ -26,10 +25,6 @@ lerna \
 miragejs \
 nodemon \
 prettier \
-preact \
-preact-compat \
-preact-markup \
-preact-router \
 @reduxjs/toolkit \
 react \
 react-dom \
@@ -72,12 +67,15 @@ tailwindcss \
 
 
 yarn add -W \
+body-parser \
 cookie-parser \
 cors \
 express \
 express-http-proxy \
 express-session \
 morgan \
+passport \
+passport-local \
 uuid \
 winston
 

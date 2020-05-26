@@ -6,14 +6,14 @@
   var scripts = ''
   for(var i=0; i < htmlWebpackPlugin.files.js.length; i++) {
     var script = htmlWebpackPlugin.files.js[i]
-    if (script.indexOf('login') < 0) {
+    if (script.indexOf('login') === 1) {
       scripts += `<script defer type="text/javascript" src="${script}?${APP_HASH}"></script>`
     }
   }
 
   var mounts = '<div id="modals"></div><div id="root"></div>'
 
-  var main = require("html-loader!./index.html")
+  var main = require("html-loader!./login.html")
   main = main.replace('</head>', scripts + '</head>')
   main = main.replace('</body>', mounts + '</body>')
 %>
