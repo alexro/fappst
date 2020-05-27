@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { Route } from 'react-router';
 
-import { MainContext } from '../../main/main';
+import { MainContext } from '../../main/context';
 
 function Layout({ children }) {
   const mainContext = useContext(MainContext);

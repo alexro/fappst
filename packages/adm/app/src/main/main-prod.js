@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main, { rootElement } from './main';
+import { rootElement } from './context';
+import Main from './container';
 
 function main() {
   ReactDOM.render(<Main />, rootElement);
@@ -8,4 +9,3 @@ function main() {
 
 main();
 console.log('main prod');
-``
