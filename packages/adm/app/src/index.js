@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 if (process.env.NODE_ENV === 'development') {
-  require('./main-dev');
+  require('./main/main-dev');
 } else {
-  require('./main-prod');
+  require('./main/main-prod');
 }

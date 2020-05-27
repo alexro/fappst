@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import WireUp from './redux/wireup';
-import Layout from './modules/Layout';
+import WireUp from '../redux/wireup';
+import Layout from '../modules/Layout';
 
 export const modalsElement = document.getElementById('modals');
 export const rootElement = document.getElementById('root');
